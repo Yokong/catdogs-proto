@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package catdogs;
+
+service User {
+    rpc Register(RegisterReq) returns (RegisterRsp) {}
+}
+
+message RegisterReq {
+    string email = 1;
+    string password = 2;
+}
+
+message RegisterRsp {
+    int32 code = 1;
+    string msg = 2;
+    bytes data = 3;
+}
