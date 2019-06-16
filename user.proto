@@ -14,7 +14,7 @@ message RegisterReq {
 message RegisterRsp {
     int32 code = 1;
     string msg = 2;
-    bytes data = 3;
+	string token = 3;
 }
 
 message LoginReq {
