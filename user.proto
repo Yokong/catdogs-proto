@@ -4,6 +4,7 @@ package catdogs;
 
 service User {
     rpc Register(RegisterReq) returns (RegisterRsp) {}
+	rpc Login(LoginReq) returns (LoginRsp) {}
 }
 
 message RegisterReq {
