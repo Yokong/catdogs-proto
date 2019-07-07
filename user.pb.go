@@ -4,10 +4,8 @@
 package catdogs
 
 import (
-	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -124,15 +122,119 @@ func (m *RegisterRsp) GetToken() string {
 	return ""
 }
 
+type LoginReq struct {
+	Email                string   `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Password             string   `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *LoginReq) Reset()         { *m = LoginReq{} }
+func (m *LoginReq) String() string { return proto.CompactTextString(m) }
+func (*LoginReq) ProtoMessage()    {}
+func (*LoginReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_116e343673f7ffaf, []int{2}
+}
+
+func (m *LoginReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_LoginReq.Unmarshal(m, b)
+}
+func (m *LoginReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_LoginReq.Marshal(b, m, deterministic)
+}
+func (m *LoginReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LoginReq.Merge(m, src)
+}
+func (m *LoginReq) XXX_Size() int {
+	return xxx_messageInfo_LoginReq.Size(m)
+}
+func (m *LoginReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_LoginReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_LoginReq proto.InternalMessageInfo
+
+func (m *LoginReq) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+func (m *LoginReq) GetPassword() string {
+	if m != nil {
+		return m.Password
+	}
+	return ""
+}
+
+type LoginRsp struct {
+	Code                 int32    `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Msg                  string   `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	Token                string   `protobuf:"bytes,3,opt,name=token,proto3" json:"token,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *LoginRsp) Reset()         { *m = LoginRsp{} }
+func (m *LoginRsp) String() string { return proto.CompactTextString(m) }
+func (*LoginRsp) ProtoMessage()    {}
+func (*LoginRsp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_116e343673f7ffaf, []int{3}
+}
+
+func (m *LoginRsp) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_LoginRsp.Unmarshal(m, b)
+}
+func (m *LoginRsp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_LoginRsp.Marshal(b, m, deterministic)
+}
+func (m *LoginRsp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LoginRsp.Merge(m, src)
+}
+func (m *LoginRsp) XXX_Size() int {
+	return xxx_messageInfo_LoginRsp.Size(m)
+}
+func (m *LoginRsp) XXX_DiscardUnknown() {
+	xxx_messageInfo_LoginRsp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_LoginRsp proto.InternalMessageInfo
+
+func (m *LoginRsp) GetCode() int32 {
+	if m != nil {
+		return m.Code
+	}
+	return 0
+}
+
+func (m *LoginRsp) GetMsg() string {
+	if m != nil {
+		return m.Msg
+	}
+	return ""
+}
+
+func (m *LoginRsp) GetToken() string {
+	if m != nil {
+		return m.Token
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*RegisterReq)(nil), "catdogs.RegisterReq")
 	proto.RegisterType((*RegisterRsp)(nil), "catdogs.RegisterRsp")
+	proto.RegisterType((*LoginReq)(nil), "catdogs.LoginReq")
+	proto.RegisterType((*LoginRsp)(nil), "catdogs.LoginRsp")
 }
 
 func init() { proto.RegisterFile("user.proto", fileDescriptor_116e343673f7ffaf) }
 
 var fileDescriptor_116e343673f7ffaf = []byte{
-	// 174 bytes of a gzipped FileDescriptorProto
+	// 192 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2a, 0x2d, 0x4e, 0x2d,
 	0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4f, 0x4e, 0x2c, 0x49, 0xc9, 0x4f, 0x2f, 0x56,
 	0xb2, 0xe7, 0xe2, 0x0e, 0x4a, 0x4d, 0xcf, 0x2c, 0x2e, 0x49, 0x2d, 0x0a, 0x4a, 0x2d, 0x14, 0x12,
@@ -140,80 +242,9 @@ var fileDescriptor_116e343673f7ffaf = []byte{
 	0x84, 0xa4, 0xb8, 0x38, 0x0a, 0x12, 0x8b, 0x8b, 0xcb, 0xf3, 0x8b, 0x52, 0x24, 0x98, 0xc0, 0x12,
 	0x70, 0xbe, 0x92, 0x27, 0x92, 0x01, 0xc5, 0x05, 0x42, 0x42, 0x5c, 0x2c, 0xc9, 0xf9, 0x29, 0xa9,
 	0x60, 0xfd, 0xac, 0x41, 0x60, 0xb6, 0x90, 0x00, 0x17, 0x73, 0x6e, 0x71, 0x3a, 0x54, 0x27, 0x88,
-	0x09, 0xb2, 0xa6, 0x24, 0x3f, 0x3b, 0x35, 0x4f, 0x82, 0x19, 0x62, 0x0d, 0x98, 0x63, 0xe4, 0xc0,
-	0xc5, 0x12, 0x5a, 0x9c, 0x5a, 0x24, 0x64, 0xc1, 0xc5, 0x01, 0x33, 0x52, 0x48, 0x44, 0x0f, 0xea,
-	0x52, 0x3d, 0x24, 0x67, 0x4a, 0x61, 0x11, 0x2d, 0x2e, 0x50, 0x62, 0x48, 0x62, 0x03, 0xfb, 0xce,
-	0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0xdc, 0xfc, 0x58, 0x01, 0xeb, 0x00, 0x00, 0x00,
-}
-
-// Reference imports to suppress errors if they are not otherwise used.
-var _ context.Context
-var _ grpc.ClientConn
-
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
-
-// UserClient is the client API for User service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type UserClient interface {
-	Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterRsp, error)
-}
-
-type userClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewUserClient(cc *grpc.ClientConn) UserClient {
-	return &userClient{cc}
-}
-
-func (c *userClient) Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterRsp, error) {
-	out := new(RegisterRsp)
-	err := c.cc.Invoke(ctx, "/catdogs.User/Register", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// UserServer is the server API for User service.
-type UserServer interface {
-	Register(context.Context, *RegisterReq) (*RegisterRsp, error)
-}
-
-func RegisterUserServer(s *grpc.Server, srv UserServer) {
-	s.RegisterService(&_User_serviceDesc, srv)
-}
-
-func _User_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServer).Register(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/catdogs.User/Register",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServer).Register(ctx, req.(*RegisterReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _User_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "catdogs.User",
-	HandlerType: (*UserServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Register",
-			Handler:    _User_Register_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "user.proto",
+	0x09, 0xb2, 0xa6, 0x24, 0x3f, 0x3b, 0x35, 0x4f, 0x82, 0x19, 0x62, 0x0d, 0x98, 0xa3, 0x64, 0xc3,
+	0xc5, 0xe1, 0x93, 0x9f, 0x9e, 0x99, 0x47, 0x9e, 0x43, 0xdc, 0x60, 0xba, 0x29, 0x73, 0x85, 0x91,
+	0x03, 0x17, 0x4b, 0x68, 0x71, 0x6a, 0x91, 0x90, 0x05, 0x17, 0x07, 0xcc, 0x63, 0x42, 0x22, 0x7a,
+	0xd0, 0xf0, 0xd2, 0x43, 0x0a, 0x2c, 0x29, 0x2c, 0xa2, 0xc5, 0x05, 0x4a, 0x0c, 0x49, 0x6c, 0xe0,
+	0x30, 0x36, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xab, 0xbd, 0xc1, 0x8b, 0x71, 0x01, 0x00, 0x00,
 }

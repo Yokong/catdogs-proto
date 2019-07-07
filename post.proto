@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package catdogs;
+
+service Post {
+	rpc Poster(SetPostReq) returns (SetPostRsp) {}
+}
+
+message SetPostReq {
+    string title = 1;
+	string author = 2;
+	string content = 3;
+}
+
+message SetPostRsp {
+	int32 code = 1;
+	string msg = 2;
+}
