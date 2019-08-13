@@ -4,6 +4,7 @@ package catdogs;
 
 service Post {
 	rpc Poster(SetPostReq) returns (SetPostRsp) {}
+	rpc GetPostById(GetPostByIdReq) returns (GetPostByIdRsp) {}
 }
 
 message SetPostReq {
@@ -15,4 +16,18 @@ message SetPostReq {
 message SetPostRsp {
 	int32 code = 1;
 	string msg = 2;
+}
+
+message GetPostByIdReq {
+	int32 id = 1;
+}
+
+message GetPostByIdRsp {
+	int32 code = 1;
+	string msg = 2;
+	string title = 3;
+	string content = 4;
+	string source = 5;
+	int64 timestamp = 6;
+	string author = 7;
 }
