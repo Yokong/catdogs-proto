@@ -4,7 +4,8 @@ package catdogs;
 
 service User {
     rpc Register(RegisterReq) returns (RegisterRsp) {}
-	rpc Login(LoginReq) returns (LoginRsp) {}
+    rpc Login(LoginReq) returns (LoginRsp) {}
+    rpc SetProfile(SetProfileReq) returns (SetProfileRsp) {}
 }
 
 message RegisterReq {
@@ -27,4 +28,24 @@ message LoginRsp {
     int32 code = 1;
     string msg = 2;
     string token = 3;
+}
+
+message Profile {
+    string name = 1;
+    string gender = 2;
+    int32 age = 3;
+    string phoneNum = 4;
+    string email = 5;
+    string birthday = 6;
+    string city = 7;
+    string address = 8;
+}
+
+message SetProfileReq {
+    Profile profile = 1;
+}
+
+message SetProfileRsp {
+    int32 code = 1;
+    string msg = 2;
 }
