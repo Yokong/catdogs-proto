@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package catdogs;
 
+import "common.proto";
+
 service Post {
 	rpc Poster(SetPostReq) returns (SetPostRsp) {}
 	rpc GetPostById(GetPostByIdReq) returns (GetPostByIdRsp) {}
@@ -14,8 +16,7 @@ message SetPostReq {
 }
 
 message SetPostRsp {
-	int32 code = 1;
-	string msg = 2;
+	Rsp rsp = 1;
 }
 
 message GetPostByIdReq {
@@ -23,11 +24,10 @@ message GetPostByIdReq {
 }
 
 message GetPostByIdRsp {
-	int32 code = 1;
-	string msg = 2;
-	string title = 3;
-	string content = 4;
-	string source = 5;
-	int64 timestamp = 6;
-	string author = 7;
+	Rsp rsp = 1;
+	string title = 2;
+	string content = 3;
+	string source = 4;
+	int64 timestamp = 5;
+	string author = 6;
 }

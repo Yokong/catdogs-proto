@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package catdogs;
 
+import "common.proto";
+
 service User {
     rpc Register(RegisterReq) returns (RegisterRsp) {}
     rpc Login(LoginReq) returns (LoginRsp) {}
@@ -14,9 +16,8 @@ message RegisterReq {
 }
 
 message RegisterRsp {
-    int32 code = 1;
-    string msg = 2;
-	string token = 3;
+    Rsp rsp = 1;
+	string token = 2;
 }
 
 message LoginReq {
@@ -25,8 +26,7 @@ message LoginReq {
 }
 
 message LoginRsp {
-    int32 code = 1;
-    string msg = 2;
+    Rsp rsp = 1;
     string token = 3;
 }
 
@@ -46,6 +46,5 @@ message SetProfileReq {
 }
 
 message SetProfileRsp {
-    int32 code = 1;
-    string msg = 2;
+    Rsp rsp = 1;
 }
